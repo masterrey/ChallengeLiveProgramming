@@ -55,4 +55,4 @@ Please feel free to report any bugs or issues you come across. Thank you for pla
 
 ---
 
-Made with ❤️ by [Your development team's name]
+Made with ❤️ by Reinaldo Ramos
