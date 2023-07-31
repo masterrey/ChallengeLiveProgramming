@@ -9,6 +9,8 @@ public class PlayerControl : MonoBehaviour
 
     public string controlH,controlV,jump;
 
+    public FixedJoystick fixedJoystick;
+
     public float acell=0.1f;
     public float ballpush = 10;
     float grav = -8f;
@@ -35,11 +37,20 @@ public class PlayerControl : MonoBehaviour
             grav = jumpforce;
         }
 
-
-        Vector3 mov = new Vector3(Input.GetAxis(controlH),0, Input.GetAxis(controlV));
-        mov = Camera.main.transform.TransformDirection(mov);
-        mov=new Vector3(mov.x, grav, mov.z);
-        characterController.Move(mov* acell*Time.deltaTime);
+        if (fixedJoystick!=null && (fixedJoystick.Horizontal != 0 || fixedJoystick.Vertical != 0))
+        {
+            Vector3 direction = Vector3.forward * fixedJoystick.Vertical + Vector3.right * fixedJoystick.Horizontal;
+            direction = Camera.main.transform.TransformDirection(direction);
+            direction = new Vector3(direction.x, grav, direction.z);
+            characterController.Move(direction * acell * Time.deltaTime);
+        }
+        else
+        {
+            Vector3 mov = new Vector3(Input.GetAxis(controlH), 0, Input.GetAxis(controlV));
+            mov = Camera.main.transform.TransformDirection(mov);
+            mov = new Vector3(mov.x, grav, mov.z);
+            characterController.Move(mov * acell * Time.deltaTime);
+        }
 
        if(grav > -8) 
         {

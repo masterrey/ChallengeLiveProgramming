@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerControlOnline : MonoBehaviourPunCallbacks { 
     public CharacterController characterController;
+    public FixedJoystick fixedJoystick;
 
     public string controlH,controlV,jump;
 
@@ -18,7 +19,10 @@ public class PlayerControlOnline : MonoBehaviourPunCallbacks {
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (photonView.IsMine)
+        {
+            fixedJoystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<FixedJoystick>();
+        }
     }
 
     
@@ -40,11 +44,21 @@ public class PlayerControlOnline : MonoBehaviourPunCallbacks {
             grav = jumpforce;
         }
 
+        if (fixedJoystick != null && (fixedJoystick.Horizontal != 0 || fixedJoystick.Vertical != 0))
+        {
+            Vector3 direction = Vector3.forward * fixedJoystick.Vertical + Vector3.right * fixedJoystick.Horizontal;
+            direction = Camera.main.transform.TransformDirection(direction);
+            direction = new Vector3(direction.x, grav, direction.z);
+            characterController.Move(direction * acell * Time.deltaTime);
+        }
+        else
+        {
 
-        Vector3 mov = new Vector3(Input.GetAxis(controlH),0, Input.GetAxis(controlV));
-        mov = Camera.main.transform.TransformDirection(mov);
-        mov=new Vector3(mov.x, grav, mov.z);
-        characterController.Move(mov* acell*Time.deltaTime);
+            Vector3 mov = new Vector3(Input.GetAxis(controlH), 0, Input.GetAxis(controlV));
+            mov = Camera.main.transform.TransformDirection(mov);
+            mov = new Vector3(mov.x, grav, mov.z);
+            characterController.Move(mov * acell * Time.deltaTime);
+        }
 
        if(grav > -8) 
         {
