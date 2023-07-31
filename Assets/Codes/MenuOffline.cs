@@ -11,6 +11,6 @@ public class MenuOffline : MonoBehaviour
     }
     public void PlayLocalSigle()
     {
-        SceneManager.LoadScene("GameLocalSingle");
+        SceneManager.LoadScene("GameLocalAI");
     }
 }

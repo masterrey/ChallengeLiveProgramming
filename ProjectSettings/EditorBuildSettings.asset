@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameLocalVS.unity
     guid: 5446ccc1b4a7892488caccaf3261a820
+  - enabled: 1
+    path: Assets/Scenes/GameLocalAI.unity
+    guid: f2df9f24de8449b4090716784b6f38ea
   m_configObjects: {}
