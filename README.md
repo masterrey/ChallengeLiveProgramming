@@ -29,17 +29,18 @@ Welcome to our exciting Volleyball game! Play with friends on the same screen, a
    - Move Down: `S`
    - Move Left: `A`
    - Move Right: `D`
+   -  - Action (jump): `Space`
 
 2. **Right Player**:
    - Move Up: `Up Arrow`
    - Move Down: `Down Arrow`
    - Move Left: `Left Arrow`
    - Move Right: `Right Arrow`
-   - Action (serve, hit the ball, etc.): `Enter`
+   - Action (jump): `Enter`
 
 ### Mobile Controls
 
-The control on mobile is done through the virtual joystick on the screen. Tap and drag to move your player. To perform actions (like serving, hitting the ball, etc.), tap the action button next to the joystick.
+The control on mobile is done through the virtual joystick on the screen. Tap and drag to move your player. 
 
 ## How to Play
 
